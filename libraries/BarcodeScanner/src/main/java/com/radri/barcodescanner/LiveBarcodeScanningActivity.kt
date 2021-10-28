@@ -19,6 +19,7 @@ package com.radri.barcodescanner
 import android.Manifest
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -33,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ComponentActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.chip.Chip
@@ -51,12 +53,11 @@ import java.io.IOException
 import java.util.*
 
 /** Demonstrates the barcode scanning workflow using camera preview.  */
-class LiveBarcodeScanningActivity() : AppCompatActivity(), OnClickListener {
+class LiveBarcodeScanningActivity : AppCompatActivity(), OnClickListener {
 
     private var cameraSource: CameraSource? = null
     private var preview: CameraSourcePreview? = null
     private var graphicOverlay: GraphicOverlay? = null
-    private var settingsButton: View? = null
     private var flashButton: View? = null
     private var promptChip: Chip? = null
     private var promptChipAnimator: AnimatorSet? = null
@@ -86,9 +87,6 @@ class LiveBarcodeScanningActivity() : AppCompatActivity(), OnClickListener {
         flashButton = findViewById<View>(R.id.flash_button).apply {
             setOnClickListener(this@LiveBarcodeScanningActivity)
         }
-        settingsButton = findViewById<View>(R.id.settings_button).apply {
-            setOnClickListener(this@LiveBarcodeScanningActivity)
-        }
 
         setUpWorkflowModel()
     }
@@ -97,7 +95,6 @@ class LiveBarcodeScanningActivity() : AppCompatActivity(), OnClickListener {
         super.onResume()
 
         workflowModel?.markCameraFrozen()
-        settingsButton?.isEnabled = true
         currentWorkflowState = WorkflowState.NOT_STARTED
         cameraSource?.setFrameProcessor(BarcodeProcessor(graphicOverlay!!, workflowModel!!))
         workflowModel?.setWorkflowState(WorkflowState.DETECTING)
@@ -133,10 +130,6 @@ class LiveBarcodeScanningActivity() : AppCompatActivity(), OnClickListener {
                         cameraSource!!.updateFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
                     }
                 }
-            }
-            R.id.settings_button -> {
-                settingsButton?.isEnabled = false
-                startActivity(Intent(this, SettingsActivity::class.java))
             }
         }
     }
@@ -212,22 +205,27 @@ class LiveBarcodeScanningActivity() : AppCompatActivity(), OnClickListener {
 
         workflowModel?.detectedBarcode?.observe(this, { barcode ->
             if (barcode != null) {
-                val barcodeFieldList = ArrayList<BarcodeField>()
-                barcodeFieldList.add(BarcodeField("Raw Value", barcode.rawValue ?: ""))
-                BarcodeResultFragment.show(supportFragmentManager, barcodeFieldList)
+//                val barcodeFieldList = ArrayList<BarcodeField>()
+//                barcodeFieldList.add(BarcodeField("Raw Value", barcode.rawValue ?: ""))
+//                BarcodeResultFragment.show(supportFragmentManager, barcodeFieldList)
+                val intent = Intent(flashButton?.context, destinationActivity::class.java)
+                intent.putExtra("barcodeRawValue", barcode.rawValue)
+                flashButton?.context?.startActivity(intent)
             }
         })
     }
 
     companion object {
         private const val TAG = "LiveBarcodeActivity"
+        private lateinit var destinationActivity: AppCompatActivity
 
-        fun requestStartScanner(sourceActivity: AppCompatActivity, view: View, requestPermissionLauncher: ActivityResultLauncher<String>) {
+        fun requestStartScanner(sourceActivity: AppCompatActivity, destinationActivity: AppCompatActivity, view: View, requestPermissionLauncher: ActivityResultLauncher<String>) {
             when {
                 ContextCompat.checkSelfPermission(
                     sourceActivity,
                     Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED -> {
+                    this.destinationActivity = destinationActivity
                     val intent = Intent(view.context, LiveBarcodeScanningActivity::class.java)
                     view.context.startActivity(intent)
                 }

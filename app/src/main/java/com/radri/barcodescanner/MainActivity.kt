@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.scannerButton)
 
         button.setOnClickListener { // Perform action on click
-            LiveBarcodeScanningActivity.requestStartScanner(this, button, requestPermissionLauncher)
+            LiveBarcodeScanningActivity.requestStartScanner(this, ResultActivity(), button, requestPermissionLauncher)
         }
     }
 }
