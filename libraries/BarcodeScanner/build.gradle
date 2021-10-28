@@ -4,9 +4,6 @@ plugins {
     id 'maven-publish'
 }
 
-
-group 'com.github.AdrienRoux'
-
 android {
     compileSdk 31
 
