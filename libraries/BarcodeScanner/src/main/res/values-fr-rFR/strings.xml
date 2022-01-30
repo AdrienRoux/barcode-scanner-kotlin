@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="permission_granted">Permission caméra authorisée</string>
+    <string name="permission_required">Permission caméra requise.</string>
+    <string name="ok">Ok</string>
+
+    <!-- Strings for barcode detection settings. -->
+    <string name="pref_category_barcode_detection">Détection de code-barre</string>
+    <string name="pref_title_barcode_reticle_width">Taille du réticule code-barre</string>
+    <string name="pref_summary_barcode_reticle_width" formatted="false">Relatif à la longueur de la vue caméra, est compris entre 50% et 90%</string>
+    <string name="pref_title_barcode_reticle_height">Largeur du réticule code-barres</string>
+    <string name="pref_summary_barcode_reticle_height" formatted="false">Relatif à la largeur de la vue caméra, est compris entre 20% et 80%</string>
+    <string name="pref_title_enable_barcode_size_check">Activer la vérification de la taille du code-barre</string>
+    <string name="pref_summary_enable_barcode_size_check">Demandera à l\'utilisateur de rapprocher la caméra si le code-barre détecté est trop petit</string>
+    <string name="pref_title_minimum_barcode_width">Taille minimale du code-barre</string>
+    <string name="pref_summary_minimum_barcode_width" formatted="false">Relatif à la largeur du réticule, compris entre 20% et 80% (seulement applicable quand le check de la taille du code-barre est activée)</string>
+    <string name="pref_title_delay_loading_barcode_result">Délai du chargement du résultat du scan</string>
+    <string name="pref_summary_delay_loading_barcode_result">Montrera le spinner pendant 2s</string>
+
+    <!-- Strings for camera settings. -->
+    <string name="pref_category_camera">Appareil photo</string>
+    <string name="pref_title_rear_camera_preview_size">Taille de l\'aperçu de la vue arrière</string>
+
+    <!-- Strings for object detection settings. -->
+    <string name="pref_category_object_detection">Détection d\'un objet</string>
+    <string name="pref_title_object_detector_enable_multiple_objects">Authoriser plusieurs objets</string>
+    <string name="pref_title_object_detector_enable_classification">Authoriser la classification</string>
+
+    <!-- Strings for product search settings. -->
+    <string name="pref_category_product_search">Recherche produit</string>
+    <string name="pref_title_enable_auto_search">Activer la recherche automatique</string>
+    <string name="pref_title_confirmation_time_in_manual_search">Temps de confimation en recherche manuelle</string>
+    <string name="pref_summary_confirmation_time_in_manual_search">Compris entre 100ms et 1000ms</string>
+    <string name="pref_title_confirmation_time_in_auto_search">Temps de confirmation en recherche automatique</string>
+    <string name="pref_summary_confirmation_time_in_auto_search">Compris entre 500ms et 2000ms</string>
+
+    <string name="entry_java_title">Java</string>
+    <string name="entry_java_subtitle">Démarrer le MLKit Showcase écris en Java.</string>
+    <string name="entry_kotlin_title">Kotlin</string>
+    <string name="entry_kotlin_subtitle">Démarrer le MLKit Showcase écris en Kotlin.</string>
+    <string name="mode_odt_live_title">Détection d\'Objet: Caméra Live</string>
+    <string name="mode_odt_live_subtitle">La caméra d\'un appareil peut être utilisé pour détecter les objets dans un environnement</string>
+    <string name="mode_odt_static_title">Détection d\'Objet: Image Statique</string>
+    <string name="mode_odt_static_subtitle">Un ou plusieurs objets peuvent être détectés depuis une image fournie.</string>
+    <string name="mode_barcode_live_title">Scanner un code-barres</string>
+    <string name="mode_barcode_live_subtitle">Lire de la donnée encodée dans les formats de code-barres standards.</string>
+    <string name="custom_model_live_title">Détection d\'Objet: Caméra avec classification personalisée (Oiseaux)</string>
+    <string name="custom_model_live_subtitle">La caméra peut être utilisée pour détecter les oiseaux dans un environnement.</string>
+    <string name="settings_title">Paramètres du MLKit Showcase</string>
+    <string name="cd_settings_button">Paramètres</string>
+    <string name="cd_close_button">Retour</string>
+    <string name="cd_flash_button">Activer / Désactiver le flash de la caméra</string>
+    <string name="cd_photo_library_button">Utiliser une image</string>
+    <string name="prompt_point_at_an_object">Pointez votre caméra vers un objet</string>
+    <string name="prompt_point_at_a_barcode">Pointez votre caméra vers un code-barre</string>
+    <string name="prompt_point_at_a_bird">Pointez votre camera vers un oiseau</string>
+    <string name="prompt_hold_camera_steady">Gardez la caméra stable un moment</string>
+    <string name="prompt_move_camera_closer">Rapprochez-vous de la recherche</string>
+    <string name="prompt_searching">Recherche&#8230;</string>
+    <string name="product_search_button">Rechercher un object</string>
+    <plurals name="bottom_sheet_title">
+        <item quantity="one">%d match trouvé</item>
+        <item quantity="other">%d matchs trouvés</item>
+    </plurals>
+    <string name="buttom_sheet_custom_model_title">Object personalisé trouvé</string>
+    <string name="static_image_prompt_detected_no_results">Aucun résultat trouvé</string>
+    <string name="static_image_prompt_detected_results">Tappez sur un point pour inspecter</string>
+    <string name="static_image_card_no_result_title">Aucun résultat trouvé</string>
+    <string name="static_image_card_no_result_subtitle">Placeholder du text de support</string>
+    <string name="static_image_preview_card_subtitle">+%d résultats</string>
+</resources>
